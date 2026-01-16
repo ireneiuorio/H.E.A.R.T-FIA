@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# PyCharm
+.idea/
+
+# Dati generati automaticamente
+data/*.csv
