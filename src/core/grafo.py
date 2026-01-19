@@ -76,31 +76,65 @@ def crea_grafo_semplice() -> Grafo:
 
  #crea un grafo complesso con più alternative
 def crea_grafo_complesso() -> Grafo:
-
     grafo = Grafo()
 
-    # Corridoio centrale (molto affollato)
-    grafo.aggiungi_arco("Ingresso", "A", 5, "centrale")
-    grafo.aggiungi_arco("A", "B", 8, "centrale")
-    grafo.aggiungi_arco("B", "C", 8, "centrale")
-    grafo.aggiungi_arco("C", "D", 8, "centrale")
-    grafo.aggiungi_arco("D", "E", 8, "centrale")
-    grafo.aggiungi_arco("E", "Reparto", 5, "centrale")
 
-    # Percorsi secondari (meno affollati)
-    grafo.aggiungi_arco("A", "F", 12, "secondario")
-    grafo.aggiungi_arco("F", "G", 12, "secondario")
-    grafo.aggiungi_arco("G", "C", 12, "secondario")
 
-    grafo.aggiungi_arco("C", "H", 12, "secondario")
-    grafo.aggiungi_arco("H", "I", 12, "secondario")
-    grafo.aggiungi_arco("I", "E", 12, "secondario")
+    grafo.aggiungi_arco("Ingresso", "A", 10, "centrale")
+    grafo.aggiungi_arco("A", "B", 10, "centrale")
+    grafo.aggiungi_arco("B", "C", 10, "centrale")
+    grafo.aggiungi_arco("C", "D", 10, "centrale")
+    grafo.aggiungi_arco("D", "Reparto", 10, "centrale")
 
-    # Percorso isolato (lungo ma poco affollato)
-    grafo.aggiungi_arco("C", "J", 15, "isolato")
-    grafo.aggiungi_arco("J", "K", 10, "isolato")
-    grafo.aggiungi_arco("K", "L", 10, "isolato")
-    grafo.aggiungi_arco("L", "Reparto", 10, "isolato")
+
+
+    grafo.aggiungi_arco("Ingresso", "N1", 12, "secondario")
+    grafo.aggiungi_arco("N1", "N2", 12, "secondario")
+    grafo.aggiungi_arco("N2", "N3", 12, "secondario")
+    grafo.aggiungi_arco("N3", "N4", 12, "secondario")
+    grafo.aggiungi_arco("N4", "Reparto", 12, "secondario")
+
+
+
+    grafo.aggiungi_arco("Ingresso", "S1", 12, "secondario")
+    grafo.aggiungi_arco("S1", "S2", 12, "secondario")
+    grafo.aggiungi_arco("S2", "S3", 12, "secondario")
+    grafo.aggiungi_arco("S3", "S4", 12, "secondario")
+    grafo.aggiungi_arco("S4", "Reparto", 12, "secondario")
+
+
+
+    grafo.aggiungi_arco("Ingresso", "E1", 16, "isolato")
+    grafo.aggiungi_arco("E1", "E2", 16, "isolato")
+    grafo.aggiungi_arco("E2", "E3", 16, "isolato")
+    grafo.aggiungi_arco("E3", "E4", 16, "isolato")
+    grafo.aggiungi_arco("E4", "Reparto", 16, "isolato")
+
+
+
+    grafo.aggiungi_arco("A", "N1", 8, "secondario")
+    grafo.aggiungi_arco("A", "S1", 8, "secondario")
+
+
+    grafo.aggiungi_arco("B", "N2", 8, "secondario")
+    grafo.aggiungi_arco("B", "S2", 8, "secondario")
+
+
+    grafo.aggiungi_arco("C", "N3", 8, "secondario")
+    grafo.aggiungi_arco("C", "S3", 8, "secondario")
+    grafo.aggiungi_arco("C", "E2", 12, "isolato")
+
+
+    grafo.aggiungi_arco("N2", "S2", 15, "secondario")
+    grafo.aggiungi_arco("N3", "E3", 18, "isolato")
+    grafo.aggiungi_arco("S3", "E3", 18, "isolato")
+
+
+
+    grafo.aggiungi_arco("N1", "N3", 20, "centrale")
+    grafo.aggiungi_arco("S1", "S3", 20, "centrale")
+    grafo.aggiungi_arco("D", "N4", 15, "secondario")
+    grafo.aggiungi_arco("D", "S4", 15, "secondario")
 
     return grafo
 
