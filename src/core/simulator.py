@@ -1,8 +1,8 @@
 
 
 import random
-import numpy as np
-from typing import Literal
+import numpy as np #cacloli matematici
+from typing import Literal #solo uno
 
 #Simula i tempo reale, rappresenta come funziona davvero l'ospedale
 #Serve per addestrare i modelli di ML e per valutare a posteriori i percorsi trovati da A*
