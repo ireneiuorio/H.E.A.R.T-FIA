@@ -74,8 +74,6 @@ def crea_grafo_semplice() -> Grafo:
     return grafo
 
 
-
-
 def crea_grafo_complesso() -> Grafo:
 
     grafo = Grafo()
