@@ -257,9 +257,6 @@ class CalcolatoreMetriche:
         )
 
 
-
-
-
     #Analizza in quali casi il ML batte il baseline statico.
     #Stessi scenari cambia solo il modello di costo
     def analisi_quando_ml_aiuta( self, metriche_statico: List[MetrichePercorso],metriche_ml: List[MetrichePercorso]) -> Dict:
