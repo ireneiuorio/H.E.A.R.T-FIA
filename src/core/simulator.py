@@ -6,52 +6,45 @@ from typing import Literal #solo uno
 
 #Simula i tempo reale, rappresenta come funziona davvero l'ospedale
 #Serve per addestrare i modelli di ML e per valutare a posteriori i percorsi trovati da A*
+# simulator.py - Modifica il costruttore
+
 class SimulatoreCosti:
-
-
     def __init__(
             self,
-            velocita_media: float = 1.4,  # m/s (velocità camminata adulto)
-            modello_congestione: Literal["lineare", "quadratico", "soglia"] = "lineare", #cona affollamento impatta il tempo
-            probabilita_evento: float = 0.05,  #5% evento imprevisto
-            seed: int = None #riproducibilità della casualità
+            velocita_media: float = 1.4,
+            modello_congestione: Literal["lineare", "quadratico", "soglia"] = "lineare",
+            probabilita_evento: float = 0.05,
+            magnitudo_eventi: tuple = (1.2, 2.0),
+            rumore_std: float = 0.06,
+            seed: int = None
     ):
-
         self.velocita_media = velocita_media
         self.modello_congestione = modello_congestione
         self.probabilita_evento = probabilita_evento
+        self.magnitudo_eventi = magnitudo_eventi
+        self.rumore_std = rumore_std
 
         if seed is not None:
-            #usa questo numero pe generare i numeri casuali
-            random.seed(seed) #orario, affollamento, eventi
-            np.random.seed(seed) #rumore,Ml,dataset,RandomForest
+            random.seed(seed)
+            np.random.seed(seed)
 
-    def tempo_percorrenza( self, lunghezza: float, orario: int, affollamento: float, tipo_corridoio: str = "centrale" ) -> float:
-
-       #Lunghezza
-        tempo_base = lunghezza / self.velocita_media #tempo ideale
-       #Orario
-        fattore_orario = self._calcola_fattore_orario(orario) #ora di punta più lento
-       #Affollamento
-        fattore_affollamento = self._calcola_fattore_affollamento(affollamento, tipo_corridoio) #quanto rallento davvero
-       #Tipo corridoio
-        fattore_tipo = self._calcola_fattore_tipo(tipo_corridoio) #rallentamento strutturale
+    def tempo_percorrenza(self, lunghezza, orario, affollamento, tipo_corridoio):
+        tempo_base = lunghezza / self.velocita_media
+        fattore_orario = self._calcola_fattore_orario(orario)
+        fattore_affollamento = self._calcola_fattore_affollamento(affollamento, tipo_corridoio)
+        fattore_tipo = self._calcola_fattore_tipo(tipo_corridoio)
 
 
-        fattore_eventi = 1.0
-        rumore = 1.0
+        if random.random() < self.probabilita_evento: #random genera un numero causale tra 0.0 e 1.0, if<0.05
+            fattore_eventi = random.uniform(*self.magnitudo_eventi) # numero casuale tra (1.2,2,0)
+        else:
+            fattore_eventi = 1.0 #nessun evento
 
-        #Calcolo finale, ogni fattore moltiplica
-        tempo_totale = (
-                tempo_base
-                * fattore_orario
-                * fattore_affollamento
-                * fattore_tipo
-                * fattore_eventi
-                * rumore
-        )
+        #Media co dispersione +-6, I VALORI SI DISPERDONO INTORNO A 1
+        rumore = np.random.normal(1.0, self.rumore_std)
 
-        #Non posso andare più veloce del 90% del tempo ideale
+        tempo_totale = (tempo_base * fattore_orario * fattore_affollamento
+                        * fattore_tipo * fattore_eventi * rumore)
         return max(tempo_totale, tempo_base * 0.9)
 
 
@@ -81,7 +74,7 @@ class SimulatoreCosti:
             return 1.0 + affollamento_effettivo
 
         elif self.modello_congestione == "quadratico": #Quadratico: impatto esponenziale ad alta densità
-            return 1.0 + (affollamento_effettivo ** 2) * 1.5
+            return 1.0 + (affollamento_effettivo ** 2) * 2.5
 
         elif self.modello_congestione == "soglia":#Soglia: impatto solo sopra una certa densità, fino a un certo livello funziona normalmente, superato quel livello le prestazioni peggiorao
             soglia = 0.6
