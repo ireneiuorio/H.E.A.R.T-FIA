@@ -6,10 +6,6 @@ from pathlib import Path
 
 #Genera una tabella riassuntiva dei risultati JSON
 class AnalizzatoreRisultati:
-    """
-    Analizza i file JSON prodotti da run_experiments.py e
-    genera una tabella riassuntiva dei risultati.
-    """
 
     def __init__(self, results_dir: str):
         self.results_dir = results_dir
@@ -65,9 +61,27 @@ class AnalizzatoreRisultati:
         print("\n" + "=" * 114)
 
 
-# ----------------------------------------------------------------------
-# MAIN
-# ----------------------------------------------------------------------
+
+
+ #Genera una tabella LaTeX riassuntiva dei risultati sperimentali.
+
+def genera_tabella_latex(self, output_path: str):
+
+    df = self.tabella_riepilogativa()
+
+    latex = df.to_latex(
+        index=False,
+        escape=False,
+        column_format="llrrrr",
+        caption="Risultati aggregati degli esperimenti",
+        label="tab:risultati_esperimenti"
+    )
+
+    with open(output_path, "w") as f:
+        f.write(latex)
+
+    print(f"Tabella LaTeX generata in: {output_path}")
+
 
 if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent
