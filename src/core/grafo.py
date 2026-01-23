@@ -73,9 +73,7 @@ def crea_grafo_semplice() -> Grafo:
 
     return grafo
 
-
 def crea_grafo_complesso() -> Grafo:
-
     grafo = Grafo()
 
 
@@ -85,43 +83,23 @@ def crea_grafo_complesso() -> Grafo:
     grafo.aggiungi_arco("C", "D", 10, "centrale")
     grafo.aggiungi_arco("D", "Reparto", 10, "centrale")
 
-
-    grafo.aggiungi_arco("Ingresso", "N1", 12, "secondario")
-    grafo.aggiungi_arco("N1", "N2", 12, "secondario")
-    grafo.aggiungi_arco("N2", "N3", 12, "secondario")
-    grafo.aggiungi_arco("N3", "N4", 12, "secondario")
-    grafo.aggiungi_arco("N4", "Reparto", 12, "secondario")
+    # Scorciatoie centrali (rischiose)
+    grafo.aggiungi_arco("A", "C", 18, "centrale")
+    grafo.aggiungi_arco("B", "D", 18, "centrale")
 
 
-    grafo.aggiungi_arco("Ingresso", "S1", 12, "secondario")
-    grafo.aggiungi_arco("S1", "S2", 12, "secondario")
-    grafo.aggiungi_arco("S2", "S3", 12, "secondario")
-    grafo.aggiungi_arco("S3", "S4", 12, "secondario")
-    grafo.aggiungi_arco("S4", "Reparto", 12, "secondario")
+    for prefisso, y in [("N", 30), ("S", 70)]:
+        grafo.aggiungi_arco("Ingresso", f"{prefisso}1", 12, "secondario")
+        grafo.aggiungi_arco(f"{prefisso}1", f"{prefisso}2", 12, "secondario")
+        grafo.aggiungi_arco(f"{prefisso}2", f"{prefisso}3", 12, "secondario")
+        grafo.aggiungi_arco(f"{prefisso}3", f"{prefisso}4", 12, "secondario")
+        grafo.aggiungi_arco(f"{prefisso}4", "Reparto", 12, "secondario")
 
+    # Bypass interni ai secondari
+    grafo.aggiungi_arco("N2", "N4", 20, "secondario")
+    grafo.aggiungi_arco("S2", "S4", 20, "secondario")
 
-    grafo.aggiungi_arco("Ingresso", "E1", 16, "isolato")
-    grafo.aggiungi_arco("E1", "E2", 16, "isolato")
-    grafo.aggiungi_arco("E2", "E3", 16, "isolato")
-    grafo.aggiungi_arco("E3", "E4", 16, "isolato")
-    grafo.aggiungi_arco("E4", "Reparto", 16, "isolato")
-
-
-    grafo.aggiungi_arco("Ingresso", "T1", 18, "isolato")
-    grafo.aggiungi_arco("T1", "T2", 18, "isolato")
-    grafo.aggiungi_arco("T2", "T3", 18, "isolato")
-    grafo.aggiungi_arco("T3", "T4", 18, "isolato")
-    grafo.aggiungi_arco("T4", "Reparto", 18, "isolato")
-
-
-    grafo.aggiungi_arco("Ingresso", "P1", 18, "isolato")
-    grafo.aggiungi_arco("P1", "P2", 18, "isolato")
-    grafo.aggiungi_arco("P2", "P3", 18, "isolato")
-    grafo.aggiungi_arco("P3", "P4", 18, "isolato")
-    grafo.aggiungi_arco("P4", "Reparto", 18, "isolato")
-
-
-
+    # Collegamenti centrale ↔ secondari
     grafo.aggiungi_arco("A", "N1", 8, "secondario")
     grafo.aggiungi_arco("A", "S1", 8, "secondario")
     grafo.aggiungi_arco("B", "N2", 8, "secondario")
@@ -131,70 +109,82 @@ def crea_grafo_complesso() -> Grafo:
     grafo.aggiungi_arco("D", "N4", 8, "secondario")
     grafo.aggiungi_arco("D", "S4", 8, "secondario")
 
+    # RIENTRI verso il centrale (fondamentali!)
+    grafo.aggiungi_arco("N2", "B", 7, "centrale")
+    grafo.aggiungi_arco("S2", "B", 7, "centrale")
+    grafo.aggiungi_arco("N3", "C", 7, "centrale")
+    grafo.aggiungi_arco("S3", "C", 7, "centrale")
 
+
+ #T nord est e p Sud est
+    for prefisso in ["E", "T", "P"]:
+        grafo.aggiungi_arco("Ingresso", f"{prefisso}1", 16 if prefisso == "E" else 18, "isolato")
+        grafo.aggiungi_arco(f"{prefisso}1", f"{prefisso}2", 16 if prefisso == "E" else 18, "isolato")
+        grafo.aggiungi_arco(f"{prefisso}2", f"{prefisso}3", 16 if prefisso == "E" else 18, "isolato")
+        grafo.aggiungi_arco(f"{prefisso}3", f"{prefisso}4", 16 if prefisso == "E" else 18, "isolato")
+        grafo.aggiungi_arco(f"{prefisso}4", "Reparto", 16 if prefisso == "E" else 18, "isolato")
+
+    # Collegamenti isolati ↔ secondari
     grafo.aggiungi_arco("N1", "E1", 10, "isolato")
     grafo.aggiungi_arco("S1", "E1", 10, "isolato")
     grafo.aggiungi_arco("C", "E2", 12, "isolato")
+    grafo.aggiungi_arco("N3", "E3", 18, "isolato")
+    grafo.aggiungi_arco("S3", "E3", 18, "isolato")
 
-
+    # Collegamenti isolati interni
     grafo.aggiungi_arco("E1", "T1", 10, "isolato")
     grafo.aggiungi_arco("E1", "P1", 10, "isolato")
     grafo.aggiungi_arco("N2", "T2", 12, "isolato")
     grafo.aggiungi_arco("S2", "P2", 12, "isolato")
-
-
-    grafo.aggiungi_arco("N2", "S2", 15, "secondario")
-    grafo.aggiungi_arco("N3", "E3", 18, "isolato")
-    grafo.aggiungi_arco("S3", "E3", 18, "isolato")
-    grafo.aggiungi_arco("N1", "N3", 20, "centrale")
-    grafo.aggiungi_arco("S1", "S3", 20, "centrale")
     grafo.aggiungi_arco("T2", "P2", 20, "isolato")
+
+    # Rientro isolato → centrale (decisione tardiva!)
+    grafo.aggiungi_arco("E3", "D", 14, "secondario")
 
     return grafo
 
 
-#Coordinate per euristica
-def ottieni_posizioni_grafo_complesso() -> Dict[str, Tuple[float, float]]:
 
+#Coordinate per euristica
 #Distanza in linea d'aria
 #Asse x distanza Ingresso (0m) a Reparto (100m)
 #Asse y distanza dal corridoio centrale
+def ottieni_posizioni_grafo_complesso() -> Dict[str, Tuple[float, float]]:
     return {
-
         "Ingresso": (0, 50),
         "Reparto": (100, 50),
 
-
+        # Centrale
         "A": (20, 50),
         "B": (40, 50),
         "C": (60, 50),
         "D": (80, 50),
 
-
+        # Secondari Nord
         "N1": (20, 30),
         "N2": (40, 30),
         "N3": (60, 30),
         "N4": (80, 30),
 
-
+        # Secondari Sud
         "S1": (20, 70),
         "S2": (40, 70),
         "S3": (60, 70),
         "S4": (80, 70),
 
-
+        # Isolati Est
         "E1": (20, 10),
         "E2": (40, 10),
         "E3": (60, 10),
         "E4": (80, 10),
 
-
+        # Isolati Sud-Est
         "T1": (20, -10),
         "T2": (40, -10),
         "T3": (60, -10),
         "T4": (80, -10),
 
-
+        # Isolati Nord-Est
         "P1": (20, 90),
         "P2": (40, 90),
         "P3": (60, 90),
