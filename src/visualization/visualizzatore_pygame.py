@@ -297,43 +297,46 @@ class VisualizzatoreGrafo:
 
 
 #Descrive le posizioni nel grafo
+
+# Descrive le posizioni nel grafo per il visualizzatore Pygame
 def crea_posizioni_grafo_complesso() -> Dict[str, Tuple[int, int]]:
 
     return {
+
         "Ingresso": (50, 375),
         "Reparto": (720, 375),
 
-        # CENTRALE
+
         "A": (180, 375),
         "B": (320, 375),
         "C": (460, 375),
         "D": (600, 375),
 
-        # NORD
+
         "N1": (180, 285),
         "N2": (320, 285),
         "N3": (460, 285),
         "N4": (600, 285),
 
-        # SUD
+
         "S1": (180, 465),
         "S2": (320, 465),
         "S3": (460, 465),
         "S4": (600, 465),
 
-        # ESTERNO
+
         "E1": (180, 195),
         "E2": (320, 195),
         "E3": (460, 195),
         "E4": (600, 195),
 
-        # NORD-EST - PIÙ SPAZIO DALL'ALTO
+
         "T1": (180, 110),
         "T2": (320, 110),
         "T3": (460, 110),
         "T4": (600, 110),
 
-        # SUD-EST
+
         "P1": (180, 555),
         "P2": (320, 555),
         "P3": (460, 555),

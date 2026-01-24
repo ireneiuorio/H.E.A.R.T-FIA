@@ -1,5 +1,3 @@
-
-
 #Modelli di ML per stimare il tempo di percorrenza di un corridoio
 import numpy as np
 from sklearn.linear_model import LinearRegression #implementazioni pronte di Ml
@@ -28,7 +26,7 @@ class ModelloCosto:
 
         mae = mean_absolute_error(y, y_pred) #Errore medio in secondi
         rmse = np.sqrt(mean_squared_error(y, y_pred)) #Penalizza errori grandi
-        r2 = r2_score(y, y_pred) #Qianto il modello spiega i dati
+        r2 = r2_score(y, y_pred) #Quanto il modello spiega i dati
 
         # Errore percentuale medio
         errori_relativi = np.abs(y - y_pred) / y
@@ -47,7 +45,7 @@ class ModelloCosto:
         return np.array([
             self.stima(x[0], x[1], x[2]) for x in X
         ])
-        #per ogni riga del dataset prende lunghezzza orario e affollamento e chiama stimache restituisce il tempo stimato
+        #per ogni riga del dataset prende lunghezza orario e affollamento e chiama stima che restituisce il tempo stimato
 
 #Modello regressione lineare, eredita da modello costo
 class ModelloRegressioneLineare(ModelloCosto):
@@ -78,7 +76,7 @@ class ModelloRegressioneLineare(ModelloCosto):
             raise RuntimeError("Modello non addestrato")
 
         X = np.array([[lunghezza, orario, affollamento]])
-        return max(0.0, self.modello.predict(X)[0]) #restituisvce un array tempo
+        return max(0.0, self.modello.predict(X)[0]) #restituisce un array tempo
 
     def __str__(self):
         return "Regressione Lineare"
@@ -100,14 +98,18 @@ class ModelloRandomForest(ModelloCosto):
             n_jobs=-1  # Usa tutti i core della CPU
         )
         self.addestrato = False
+        self.feature_importances_ = None
 
 
     #Addestra il modello
-    # Input x->(lunghezza,orario,affollamento), y->(tempo reale simualto)
+    # Input x->(lunghezza,orario,affollamento), y->(tempo reale simulato)
     def addestra(self, X: np.ndarray, y: np.ndarray):
 
         self.modello.fit(X, y)
         self.addestrato = True
+
+        # Salva feature importance
+        self.feature_importances_ = self.modello.feature_importances_
 
         # Feature importance: dice su cosa si basa davvero il modello per decidere
         print("\nFeature Importance (Random Forest):")
@@ -129,7 +131,7 @@ class ModelloRandomForest(ModelloCosto):
 
 
 
-#inpuy lista modelli usati, dati su cui il modello impara, dati di test
+#input lista modelli usati, dati su cui il modello impara, dati di test
 def confronta_modelli(modelli: list,X_train: np.ndarray,y_train: np.ndarray, X_test: np.ndarray,y_test: np.ndarray
 ):
 #Dizionario->nome modello, metriche
@@ -165,11 +167,22 @@ def confronta_modelli(modelli: list,X_train: np.ndarray,y_train: np.ndarray, X_t
         print(f"  R²:   {metriche_test['r2']:.3f}")
         print(f"  MAPE: {metriche_test['mape']:.1f}%")
 
-        risultati[nome] = {
-            "train": metriche_train,
-            "test": metriche_test,
+        # Costruisci risultato
+        risultato = {
+            "metriche_train": metriche_train,
+            "metriche_test": metriche_test,
             "modello": modello
         }
+
+        # Aggiungi feature importance se Random Forest
+        if isinstance(modello, ModelloRandomForest) and modello.feature_importances_ is not None:
+            risultato["feature_importance"] = {
+                "Lunghezza": float(modello.feature_importances_[0]),
+                "Orario": float(modello.feature_importances_[1]),
+                "Affollamento": float(modello.feature_importances_[2])
+            }
+
+        risultati[nome] = risultato
 
     print("\n" + "=" * 70)
     print("RIEPILOGO COMPARATIVO (Test Set)")
@@ -178,7 +191,7 @@ def confronta_modelli(modelli: list,X_train: np.ndarray,y_train: np.ndarray, X_t
     print("-" * 70)
 
     for nome, res in risultati.items():
-        m = res['test']
+        m = res['metriche_test']
         print(f"{nome:<30} {m['mae']:<10.3f} {m['rmse']:<10.3f} {m['r2']:<10.3f} {m['mape']:<10.1f}%")
 
     return risultati
@@ -207,4 +220,3 @@ def crea_funzione_costo_ml_dinamica(modello: ModelloCosto):
         return funzione_costo
 
     return factory
-
