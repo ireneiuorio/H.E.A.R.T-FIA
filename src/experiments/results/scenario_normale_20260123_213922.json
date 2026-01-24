@@ -1,0 +1,213 @@
+{
+  "esperimento": "scenario_normale",
+  "timestamp": "20260123_213922",
+  "configurazione": {
+    "seed": 42,
+    "grafo": {
+      "tipo": "complesso",
+      "num_nodi": 26,
+      "num_archi": 53
+    },
+    "simulatore": {
+      "modello_congestione": "quadratico",
+      "probabilita_evento": 0.03,
+      "magnitudo_eventi": [
+        1.1,
+        1.4
+      ],
+      "rumore_std": 0.06
+    },
+    "num_test": 50
+  },
+  "risultati_ml": {
+    "dataset": {
+      "num_campioni_totali": 540,
+      "num_train": 432,
+      "num_test": 108,
+      "test_size": 0.2
+    },
+    "regressione_lineare": {
+      "coefficienti": {
+        "lunghezza": 0.9929066505682026,
+        "orario": 0.1542336392639322,
+        "affollamento": 22.5450123759941,
+        "intercetta": -5.690231675514813
+      },
+      "train": {
+        "mae": 6.629547290368991,
+        "rmse": 8.847618705064615,
+        "r2": 0.44660107598067234,
+        "mape": 35.5161119306263
+      },
+      "test": {
+        "mae": 6.78568768624693,
+        "rmse": 8.736741116781973,
+        "r2": 0.27113467084926623,
+        "mape": 41.73630325071996
+      }
+    },
+    "random_forest": {
+      "feature_importance": {
+        "lunghezza": 0.18483927090795274,
+        "orario": 0.19183549522278395,
+        "affollamento": 0.6233252338692633
+      },
+      "train": {
+        "mae": 2.490939663074591,
+        "rmse": 3.5832646354568496,
+        "r2": 0.9092298023873543,
+        "mape": 13.142070079783336
+      },
+      "test": {
+        "mae": 5.3510234456397034,
+        "rmse": 8.05540383903634,
+        "r2": 0.3803834728986152,
+        "mape": 30.92051027063938
+      },
+      "parametri": {
+        "numero_alberi": 100,
+        "profondita_massima": 10,
+        "seed": 42
+      }
+    }
+  },
+  "risultati_aggregati": {
+    "statico": {
+      "configurazione": "statico",
+      "costo_reale_medio": 79.46925712738167,
+      "costo_reale_std": 28.204416759508938,
+      "costo_reale_min": 51.54429595882977,
+      "costo_reale_max": 165.7737396082149,
+      "gap_medio": 0.0678606900089256,
+      "gap_std": 0.1295200754325083,
+      "gap_max": 0.4215189784517023,
+      "percentuale_ottimi": 0.44,
+      "nodi_espansi_medio": 25.0,
+      "nodi_espansi_std": 0.0,
+      "tempo_medio": 7.092952728271484e-05,
+      "tempo_std": 3.164147810067367e-06,
+      "errore_stima_medio": 21.914473258138365,
+      "errore_stima_std": 18.07834859039903
+    },
+    "statico_euclidea": {
+      "configurazione": "statico_euclidea",
+      "costo_reale_medio": 85.8143652743902,
+      "costo_reale_std": 38.43552657318318,
+      "costo_reale_min": 38.68235861537372,
+      "costo_reale_max": 205.69017916132677,
+      "gap_medio": 0.10381414309894038,
+      "gap_std": 0.08960277133577908,
+      "gap_max": 0.2858458709668593,
+      "percentuale_ottimi": 0.22,
+      "nodi_espansi_medio": 18.0,
+      "nodi_espansi_std": 0.0,
+      "tempo_medio": 7.048606872558593e-05,
+      "tempo_std": 3.5388128442448267e-06,
+      "errore_stima_medio": 31.117021810852208,
+      "errore_stima_std": 23.553187294209263
+    },
+    "ml_lineare": {
+      "configurazione": "ml_lineare",
+      "costo_reale_medio": 84.56631856693713,
+      "costo_reale_std": 37.132910001342566,
+      "costo_reale_min": 38.50480827933809,
+      "costo_reale_max": 188.12811366426752,
+      "gap_medio": 0.09201155318984783,
+      "gap_std": 0.0927787050902007,
+      "gap_max": 0.35248327334075574,
+      "percentuale_ottimi": 0.22,
+      "nodi_espansi_medio": 25.5,
+      "nodi_espansi_std": 1.3453624047073711,
+      "tempo_medio": 0.004584507942199707,
+      "tempo_std": 0.00023588687298930464,
+      "errore_stima_medio": 15.42718546087477,
+      "errore_stima_std": 12.976873789998347
+    },
+    "ml_rf": {
+      "configurazione": "ml_rf",
+      "costo_reale_medio": 78.12839291825097,
+      "costo_reale_std": 32.77484549705105,
+      "costo_reale_min": 38.13191904972926,
+      "costo_reale_max": 194.0878495873334,
+      "gap_medio": 0.023656947638393322,
+      "gap_std": 0.09660395785887763,
+      "gap_max": 0.43165197661711197,
+      "percentuale_ottimi": 0.56,
+      "nodi_espansi_medio": 22.58,
+      "nodi_espansi_std": 1.887749983445901,
+      "tempo_medio": 1.327123942375183,
+      "tempo_std": 0.10306511682045968,
+      "errore_stima_medio": 13.673470357790764,
+      "errore_stima_std": 15.485474358255674
+    }
+  },
+  "analisi": {
+    "euristica": {
+      "percentuale_ml_migliore_costo": 30.0,
+      "percentuale_ml_migliore_efficienza": 100.0,
+      "risparmio_costo_medio": -6.345108147008548,
+      "risparmio_costo_std": 12.78562192038041,
+      "risparmio_nodi_medio": 7.0,
+      "risparmio_nodi_std": 0.0
+    },
+    "ml_lineare_vs_statico": {
+      "percentuale_ml_migliore_costo": 32.0,
+      "percentuale_ml_migliore_efficienza": 14.000000000000002,
+      "risparmio_costo_medio": -5.097061439555475,
+      "risparmio_costo_std": 11.795882632628794,
+      "risparmio_nodi_medio": -0.5,
+      "risparmio_nodi_std": 1.3453624047073711
+    },
+    "ml_rf_vs_statico": {
+      "percentuale_ml_migliore_costo": 62.0,
+      "percentuale_ml_migliore_efficienza": 90.0,
+      "risparmio_costo_medio": 1.3408642091306917,
+      "risparmio_costo_std": 10.345820194698467,
+      "risparmio_nodi_medio": 2.42,
+      "risparmio_nodi_std": 1.887749983445901
+    },
+    "vittorie_sconfitte": {
+      "total_casi": 50,
+      "ml_vince": {
+        "num_casi": 31,
+        "percentuale": 62.0,
+        "affollamento": {
+          "medio": 0.5322479053699866,
+          "std": 0.3040619202754511,
+          "min": 0.032365937845376114,
+          "max": 0.9315629516581985
+        },
+        "orario": {
+          "medio": 11.903225806451612,
+          "std": 6.821951469501762
+        },
+        "risparmio": {
+          "medio": 6.695281479653422,
+          "std": 5.581706804321642,
+          "min": 0.1267385492518116,
+          "max": 21.268448344975432
+        }
+      },
+      "ml_perde": {
+        "num_casi": 19,
+        "percentuale": 38.0,
+        "affollamento": {
+          "medio": 0.6114122091071972,
+          "std": 0.2150878591946744,
+          "min": 0.1954023326463964,
+          "max": 0.9930710435442112
+        },
+        "orario": {
+          "medio": 13.210526315789474,
+          "std": 7.208028764534732
+        },
+        "penalita": {
+          "media": 7.395290284880078,
+          "std": 10.379965453967216,
+          "min": 0.010618269776117017,
+          "max": 31.07048915000017
+        }
+      }
+    }
+  }
+}
