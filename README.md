@@ -150,6 +150,8 @@ Questo script esegue 50 test per ciascuno dei due scenari (normale ed estremo), 
 python src/experiments/analizza_risultati.py
 ```
 Genera le statistiche aggregate e le tabelle comparative presenti nella documentazione.
+
+**Riproducibilità**: I test utilizzano seed fisso (42) per garantire risultati identici ad ogni esecuzione.
 ### 5. Avviare la visualizzazione interattiva *(opzionale)*
 ```bash
 python src/visualization/visualizzatore_pygame.py
