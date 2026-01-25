@@ -24,7 +24,6 @@ nell’ambiente.
 
 
 ## Ambiente simulato
-
 L’ambiente ospedaliero è modellato come un **grafo non orientato**, in cui:
 - i nodi rappresentano punti di interesse (ingresso, corridoi, reparti);
 - gli archi rappresentano corridoi, ciascuno caratterizzato da:
