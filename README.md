@@ -1,6 +1,6 @@
 # H.E.A.R.T – Tecnica di Instradamento Adattivo in Ambiente Ospedaliero
 
-Questo repository contiene il progetto **H.E.A.R.T**, sviluppato per studiare il
+Questo repository contiene il progetto **H.E.A.R.T** (Hospital Environment Adaptive Routing Technique), sviluppato per studiare il
 problema della pianificazione dei percorsi in un ambiente ospedaliero indoor,
 caratterizzato da costi di attraversamento dinamici e incerti.
 
