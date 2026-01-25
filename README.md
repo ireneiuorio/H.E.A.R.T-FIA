@@ -41,7 +41,7 @@ Nel progetto vengono utilizzati due algoritmi di ricerca su grafo:
   Espande i nodi in base al solo costo accumulato del percorso.  
   Rappresenta un baseline solido e privo di euristica.
 
-- A\*  
+- **A\***  
   Combina il costo accumulato con una funzione euristica.  
   Sono state testate:
   - euristica nulla (equivalente a UCS);
