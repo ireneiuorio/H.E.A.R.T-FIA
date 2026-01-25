@@ -8,7 +8,7 @@ L’obiettivo del progetto è analizzare **quando e in che condizioni l’uso de
 machine learning può migliorare la pianificazione su grafo**, rispetto ad
 approcci classici basati su costi statici.  
 Il confronto viene effettuato utilizzando due algoritmi di ricerca standard:
-**Uniform Cost Search (UCS)** e *A\***.
+**Uniform Cost Search (UCS)** e **A\***.
 
 La domanda di ricerca che guida il lavoro è la seguente:
 
