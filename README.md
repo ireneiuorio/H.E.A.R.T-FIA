@@ -8,7 +8,7 @@ L’obiettivo del progetto è analizzare **quando e in che condizioni l’uso de
 machine learning può migliorare la pianificazione su grafo**, rispetto ad
 approcci classici basati su costi statici.  
 Il confronto viene effettuato utilizzando due algoritmi di ricerca standard:
-**Uniform Cost Search (UCS)** e *A\.
+**Uniform Cost Search (UCS)** e *A\***.
 
 La domanda di ricerca che guida il lavoro è la seguente:
 
@@ -32,7 +32,7 @@ L’ambiente ospedaliero è modellato come un **grafo non orientato**, in cui:
   - tipologia (centrale, secondario, isolato).
 
 
----
+
 
 ## Algoritmi di ricerca
 
@@ -48,7 +48,7 @@ Nel progetto vengono utilizzati due algoritmi di ricerca su grafo:
   - euristica nulla (equivalente a UCS);
   -  euristica euclidea basata sulla distanza geometrica.
 
----
+
 
 ## Stima dei costi
 
@@ -65,7 +65,7 @@ I costi di attraversamento degli archi vengono stimati in tre modi:
 Il machine learning non sostituisce l’algoritmo di ricerca, ma viene utilizzato
 per fornire **stime più adattive dei costi**.
 
----
+
 
 ## Scenari sperimentali
 
@@ -80,7 +80,7 @@ Sono stati definiti due scenari distinti:
 
 Per ciascuno scenario sono stati eseguiti **50 test di pianificazione**.
 
----
+
 
 ## Metriche di valutazione
 
@@ -98,7 +98,7 @@ Per i modelli di machine learning vengono inoltre riportate metriche standard:
 - **R²** (capacità esplicativa del modello);
 - **MAPE** (errore percentuale medio).
 
----
+
 
 ## Risultati principali
 I risultati mostrano che:
@@ -126,7 +126,6 @@ Il contributo principale di questo progetto non è dimostrare che il machine lea
 sia "migliore", ma chiarire in quale condizioni fornisce un reale valore aggiunto e quando,
 incece, intorduce complessità inutile.
 
----
 
 ##  Utilizzo
 
@@ -166,7 +165,7 @@ Il grafo è volutamente piccolo (26 nodi) per rendere immediato il confronto vis
 
 **Controlli sulla demo**: `1-4` per selezionare l'algoritmo | `ESC` per uscire
 
----
+
 ## Struttura del progetto
 ```
 H.E.A.R.T-FIA/
