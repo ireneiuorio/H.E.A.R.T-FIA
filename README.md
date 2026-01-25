@@ -13,7 +13,7 @@ Il confronto viene effettuato utilizzando due algoritmi di ricerca standard:
 La domanda di ricerca che guida il lavoro è la seguente:
 
 > 
-> **L’utilizzo di costi stimati tramite machine learning migliora la pianificazione di A*, oppure in alcuni casi può peggiorarne il comportamento rispetto all’uso di costi statici?**
+> L’utilizzo di costi stimati tramite machine learning migliora la pianificazione di A*, oppure in alcuni casi può peggiorarne il comportamento rispetto all’uso di costi statici?
 
 Il focus del lavoro non è sull’algoritmo di ricerca in sé, ma su **come la stima
 dei costi influisce sulla qualità delle soluzioni e sull’efficienza della
