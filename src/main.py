@@ -202,7 +202,6 @@ def main():
             f"Statico (h=0) - {metr_statico.costo_reale:.1f}s - {metr_statico.nodi_espansi} nodi",
             {
                 "Costo": f"{metr_statico.costo_reale:.1f}s",
-                "Gap": f"{metr_statico.gap_ottimalita * 100:+.1f}%",
                 "Nodi": metr_statico.nodi_espansi,
                 "Euristica": "h=0"
             }
@@ -212,7 +211,6 @@ def main():
             f"A* Euclidea - {metr_euclidea.costo_reale:.1f}s - {metr_euclidea.nodi_espansi} nodi",
             {
                 "Costo": f"{metr_euclidea.costo_reale:.1f}s",
-                "Gap": f"{metr_euclidea.gap_ottimalita * 100:+.1f}%",
                 "Nodi": metr_euclidea.nodi_espansi,
                 "Euristica": "Euclidea",
                 "Riduzione": f"{riduzione_nodi:.1f}%"
@@ -223,7 +221,6 @@ def main():
             f"ML Lineare - {metr_lin.costo_reale:.1f}s - {metr_lin.nodi_espansi} nodi",
             {
                 "Costo": f"{metr_lin.costo_reale:.1f}s",
-                "Gap": f"{metr_lin.gap_ottimalita * 100:+.1f}%",
                 "Nodi": metr_lin.nodi_espansi,
                 "Tipo": "ML"
             }
