@@ -218,8 +218,7 @@ def main():
         ),
         "ml_lineare": (
             ris_lin.percorso,
-            f"ML Lineare - {metr_lin.costo_reale:.1f}s - {metr_lin.nodi_espansi} nodi",
-            {
+            f"ML Lineare - {metr_lin.costo_reale:.1f}s - {metr_lin.nodi_espansi} nodi",{
                 "Costo": f"{metr_lin.costo_reale:.1f}s",
                 "Nodi": metr_lin.nodi_espansi,
                 "Tipo": "ML"
