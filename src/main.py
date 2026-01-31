@@ -229,7 +229,6 @@ def main():
             f"ML RF - {metr_rf.costo_reale:.1f}s - {metr_rf.nodi_espansi} nodi",
             {
                 "Costo": f"{metr_rf.costo_reale:.1f}s",
-                "Gap": f"{metr_rf.gap_ottimalita * 100:+.1f}%",
                 "Nodi": metr_rf.nodi_espansi,
                 "Tipo": "ML"
             }
