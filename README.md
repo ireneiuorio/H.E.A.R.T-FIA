@@ -103,13 +103,13 @@ Per i modelli di machine learning vengono inoltre riportate metriche standard:
 I risultati mostrano che:
 
 - in ambienti **stabili**, l’approccio statico è semplice, veloce e già
-  sufficientemente efficace;
-- quando la variabilità dei tempi aumenta, le stime basate su costi medi
+  sufficientemente efficace.
+  Quando la variabilità dei tempi aumenta, le stime basate su costi medi
   diventano meno affidabili;
 - la **Random Forest** riesce a migliorare la qualità delle soluzioni negli
   scenari più complessi, perché fornisce stime dei costi più accurate e più
-  coerenti con le condizioni reali dell’ambiente;
-- questo miglioramento comporta però un **costo computazionale più elevato**:
+  coerenti con le condizioni reali dell’ambiente.
+  Questo miglioramento comporta però un **costo computazionale più elevato**:
   a differenza dei costi statici, che sono immediatamente disponibili, le stime
   basate su machine learning richiedono la valutazione del modello per ogni arco
   durante la pianificazione, rendendo la ricerca più lenta.
